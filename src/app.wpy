@@ -1,0 +1,177 @@
+<style lang="less">
+@import './style/weui.less';
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.page-head {
+  height: 257rpx;
+  width: 100%;
+  background-size: 100% 100%;
+}
+
+.page-body {
+  margin-bottom: 104rpx;
+}
+
+.page-bg {
+  background-color: #f8f8f8;
+  & > view {
+    background: white;
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.small {
+  font-size: 20rpx;
+}
+.tiny {
+  font-size: 18rpx;
+}
+
+.image {
+  position: relative;
+  & > image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+  & > view {
+    position: relative;
+    z-index: 2;
+  }
+  & > text {
+    position: relative;
+    z-index: 2;
+  }
+  & > button {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+@fontcolor: #7b7b7b;
+@activecolor: #5E7E9A;
+.tab {
+  color: @fontcolor;
+  position: fixed;
+  bottom: 0;
+  height: 100rpx;
+  width: 100%;
+  border-top: 1px solid #dad9d6;
+  background-color: #f7f7f7;
+  font-size: 24rpx;
+  white-space: nowrap;
+  padding-top: 12rpx;
+  .tab_item {
+    &.active {
+      color: @activecolor;
+    }
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+  }
+  .icon {
+    width: 60rpx;
+    height: 60rpx;
+    display: block;
+    margin: auto;
+  }
+  .title {
+    display: block;
+  }
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/task',
+      'pages/chanllenge-setting',
+      'pages/chanllenge-list',
+      'pages/chanllenge-create',
+      'pages/completed-chanllenge',
+      'pages/chanllenge',
+      'pages/public-service-proj',
+      'pages/public-service-search',
+      'pages/achievement',
+      'pages/mall',
+      'pages/mine'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black'
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+  }
+
+  onLaunch() {
+    this.testAsync()
+  }
+
+  sleep (s) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('promise resolved')
+      }, s * 1000)
+    })
+  }
+
+  async testAsync () {
+    const data = await this.sleep(3)
+    console.log(data)
+  }
+
+  getUserInfo(cb) {
+    const that = this
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo
+    }
+    wepy.getUserInfo({
+      success (res) {
+        that.globalData.userInfo = res.userInfo
+        cb && cb(res.userInfo)
+      }
+    })
+  }
+}
+</script>

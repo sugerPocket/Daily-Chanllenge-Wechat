@@ -1,0 +1,192 @@
+<template>
+<view>
+  <view class='page-head image'>
+    <image src="../images/head.png"></image>
+  </view>
+  <view class='mall page-body'>
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" @tap="tabChange({{index}})">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+          <!--<view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>-->
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <view class="weui-panel">
+            <view class="weui-media-box weui-media-box_small-appmsg">
+              <view class="image" style='height: 180rpx; width: 100%; text-align: center; color: white;'>
+                <image src="../images/u683.png"></image>
+                <text style="line-height: 180rpx">精选图书</text>
+              </view>
+              <scroll-view class="items" scroll-x>
+                <view class="item">
+                  <image src='../images/u685.jpeg'></image>
+                  <view class="name">《人性的弱点》</view>
+                  <view class="price">380积分</view>
+                </view>
+                <view class="item">
+                  <image src='../images/u691.jpeg'></image>
+                  <view class="name">《太认真你就输了》</view>
+                  <view class="price">430积分</view>
+                </view>
+              </scroll-view>
+            </view>
+          </view>
+          <view class="weui-panel">
+            <view class="weui-media-box weui-media-box_small-appmsg">
+              <view class="image" style='height: 180rpx; width: 100%; text-align: center; color: white;'>
+                <image src="../images/u659.png"></image>
+                <text style="line-height: 180rpx">体育用品</text>
+              </view>
+              <scroll-view class="items" scroll-x>
+
+              </scroll-view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+          <view class="text-center" style='padding: 14rpx; font-size: 28rpx' >
+            <text>凝聚 <text class="orange">322, 068</text> 份爱心</text>
+          </view>
+          <view class="image" style='height: 236rpx; padding: 26rpx;'>
+            <image src="../images/u761.png"></image>
+            <view style="font-size: 32rpx; margin-top: 10rpx">免费午餐</view>
+            <view style="font-size: 28rpx">让孩子们远离饥饿</view>
+            <button style="height: 55rpx; width: 155rpx; line-height: 55rpx; font-size: 24rpx; color: white; margin: 0; margin-top: 40rpx;" class="bg-orange">我要捐赠</button>
+          </view>
+          <view style='padding: 26rpx; font-size: 24rpx; display: inline-block; height: 56rpx;'>
+            <view class='input' style="border: 1rpx solid rgba(161, 161, 161, 1); width: 306rpx; border-radius: 4rpx; font-size: 24rpx; position: relative; padding-left: 40rpx; display: inline-block;">
+              <image src="../images/u781.png" style='height: 25rpx; width: 25rpx; position: absolute; left: 8rpx; top: 50%; transform: translateY(-50%)'></image>
+              <input type='text' placeholder="查询公益项目">
+            </view>
+            <view class="orange" style='line-height: 56rpx; vertical-align: top; display: inline-block; margin-left: 15rpx; height: 100%'>#助学</view>
+            <view class="orange" @tap="search" style='line-height: 56rpx; vertical-align: top; display: inline-block; margin-left: 15rpx; height: 100%'>#扶贫</view>
+            <view class="orange" style='line-height: 56rpx; vertical-align: top; display: inline-block; margin-left: 15rpx; height: 100%'>#留守儿童</view>
+          </view>
+          <view class='weui-panel__hd'>
+            本周最受关注
+          </view>
+          <view class='weui-panel__bd'>
+            <view class="weui-media-box weui-media-box_appmsg">
+              <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                <view class="weui-media-box__title">大山里的健康小课桌</view>
+                <view class="weui-media-box__desc" style="margin-top: 10rpx;">
+                  让大山里的孩子用上适合他们身体发育的、设计科学的学生专用课桌椅。
+                  <view class="love" style="margin-top: 10rpx;"><text class="orange">20374</text>份爱心</view>
+                  <view class="tag orange">贫困儿童</view>
+                </view>
+              </view>
+              <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" @tap="project" style="width: 240rpx; height: 180rpx; margin-left: 10rpx; margin-right: 0;"><image src="../images/u797.jpeg" style="width: 240rpx; height: 180rpx;" class="weui-media-box__thumb"></image></view>
+            </view>
+            <view class="weui-media-box weui-media-box_appmsg">
+              <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                <view class="weui-media-box__title">一元早餐</view>
+                <view class="weui-media-box__desc" style="margin-top: 10rpx;">
+                  给孤老院老人送去营养早餐，让他们吃上热腾腾的豆浆和鸡蛋。
+                  <view class="love" style="margin-top: 10rpx;"><text class="orange">1894</text>份爱心</view>
+                  <view class="tag orange">孤寡老人 老有所养</view>
+                </view>
+              </view>
+              <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" style="width: 240rpx; height: 180rpx; margin-left: 10rpx; margin-right: 0;"><image src="../images/u811.jpg" style="width: 240rpx; height: 180rpx;" class="weui-media-box__thumb"></image></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="tab">
+    <view class="tab_item" @tap="change(0)">
+      <image class="icon" src="../images/task.png"></image>
+      <text class="title">任务</text>
+    </view>
+    <view class="tab_item" @tap="change(1)">
+      <image class="icon" src="../images/achievement.png"></image>
+      <text class="title">成就</text>
+    </view>
+    <view class="tab_item active">
+      <image class="icon" src="../images/mall.png"></image>
+      <text class="title">商城</text>
+    </view>
+    <view class="tab_item" @tap="change(3)">
+      <image class="icon" src="../images/mine.png"></image>
+      <text class="title">我的</text>
+    </view>
+  </view>
+</view>
+</template>
+
+<style lang="less">
+@orange: #FF9966;
+.mall {
+  .weui-panel {
+    margin: 0;
+  }
+  .bg-orange {
+    background-color: @orange;
+  }
+  .orange {
+    color: @orange;
+  }
+  .weui-panel:before, .weui-panel:after {
+    border: none;
+  }
+  .tag {
+    background-color: rgba(255,153,102,0.1);
+    display: inline-block;
+    border-radius: 4rpx;
+    padding: 2rpx 10rpx;
+    margin-top: 10rpx;
+  }
+  .items {
+    height: 220rpx;
+    padding: 22rpx;
+    white-space: nowrap;
+    text-align: left;
+    .item {
+      width: 160rpx;
+      display: inline-block;
+      margin: 0 8rpx;
+      padding: 0 15rpx;
+      text-align: center;
+      font-size: 20rpx;
+      image {
+        max-width: 138rpx;
+        max-height: 140rpx;
+      }
+    }
+  }
+}
+</style>
+
+
+<script>
+import wepy from 'wepy'
+
+export default class Mall extends wepy.page {
+  config = {
+    navigationBarTitleText: '任务'
+  };
+  data = {
+    tabs: ['积分兑换', '公益专项'],
+    activeIndex: 0,
+    pages: ['task', 'achievement', 'mall', 'mine']
+  };
+  methods = {
+    change(index) {
+      this.$redirect(this.pages[index])
+    },
+    tabChange(index) {
+      this.activeIndex = index
+    },
+    search() {
+      this.$redirect('public-service-search')
+    },
+    project() {
+      this.$redirect('public-service-proj')
+    }
+  };
+}
+</script>

@@ -1,0 +1,82 @@
+<template>
+  <view>
+    <view class="chanllenge-setting">
+      <view>添加兴趣
+        <text class="return" style="float: right;" @tap="return">返回</text>
+      </view>
+      <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+          <view class="weui-search-bar__box">
+            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+            <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+              <icon type="clear" size="14"></icon>
+            </view>
+          </view>
+          <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+            <icon class="weui-icon-search" type="search" size="14"></icon>
+            <view class="weui-search-bar__text">搜索</view>
+          </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+      </view>
+      <view class="items">
+        <view class="item"><image class="delete" src="../images/u83.png"></image>增肌</view>
+        <view class="item"><image class="delete" src="../images/u83.png"></image>钢琴</view>
+        <view class="item"><image class="delete" src="../images/u83.png"></image>日语</view>
+        <view class="item"><image class="delete" src="../images/u83.png"></image>油画</view>
+        <view class="item"><image class="delete" src="../images/u83.png"></image>烘焙</view>
+        <view class="item"><image class="delete" src="../images/u83.png"></image>模型</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<style lang="less">
+.chanllenge-setting {
+  & > view:first-child {
+    padding: 8px 10px;
+  }
+  .item:first-child {
+    border-top: 1rpx solid #dfdfdf;
+  }
+  .item {
+    padding: 8px 10px;
+    border-bottom: 1rpx solid #dfdfdf;
+  }
+  .items {
+    marigin-top: 10rpx;
+  }
+  .delete {
+    margin-right: 8rpx;
+    width: 30rpx;
+    height: 30rpx;
+  }
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+
+export default class ChanllengeSetting extends wepy.page {
+  config = {
+    navigationBarTitleText: '兴趣管理'
+  };
+  data = {
+    inputVal: '',
+    inputShowed: false,
+    pages: ['task', 'achievement', 'mall', 'mine']
+  };
+  methods = {
+    showInput() {
+      this.inputShowed = true
+    },
+    hideInput() {
+      this.inputShowed = false
+    },
+    return() {
+      this.$redirect('task')
+    }
+  };
+}
+</script>

@@ -1,0 +1,42 @@
+<template>
+  <view>
+    <view class='page-head' style="background-image: url(../images/head.png);"></view>
+    <view></view>
+    <view class="tab">
+      <view class="tab_item" @tap="change(0)">
+        <image class="icon" src="../images/task.png"></image>
+        <text class="title">任务</text>
+      </view>
+      <view class="tab_item active">
+        <image class="icon" src="../images/achievement.png"></image>
+        <text class="title">成就</text>
+      </view>
+      <view class="tab_item" @tap="change(2)">
+        <image class="icon" src="../images/mall.png"></image>
+        <text class="title">商城</text>
+      </view>
+      <view class="tab_item" @tap="change(3)">
+        <image class="icon" src="../images/mine.png"></image>
+        <text class="title">我的</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Page extends wepy.page {
+  config = {
+    navigationBarTitleText: 'main'
+  };
+  data = {
+    pages: ['task', 'achievement', 'mall', 'mine']
+  };
+  methods = {
+    change(index) {
+      this.$redirect(this.pages[index])
+    }
+  };
+}
+</script>

@@ -1,0 +1,93 @@
+<template>
+  <view>
+    <view class='page-head image'>
+      <text class="return" style="top: 50%; left: 70rpx; transform: translateY(-50%); position: absolute; color: white;" @tap="return">返回</text>
+      <image src="../images/head.png"></image>
+    </view>
+    <view class='completed-chanllenge page-body page-bg'>
+      <view class="text-center">
+        <image class="star" style="float: right" src="../images/u146.png"></image>
+        <image class="share" style="float: left" src="../images/u145.png"></image>
+        <view style="margin-top: 80rpx; margin-bottom: 60rpx;">今天完成挑战啦!</view>
+        <view style="margin: 18rpx 0;">
+          <view class="inline-block">
+            <image class="inline-block" style="height: 112rpx; width: 112rpx;" src="../images/u128.png"></image>
+            <view class="inline-block" style="line-height: 112rpx; vertical-align: top; margin-left: 20rpx; color: #F5B24E;"><text>+10积分</text></view>
+          </view>
+        </view>
+        <view style="font-size: 32rpx;">
+          <view>难易度
+            <image class="star" src="../images/u134.png"></image>
+            <image class="star" src="../images/u134.png"></image>
+            <image class="star" src="../images/u134.png"></image>
+            <image class="star" src="../images/u134.png"></image>
+            <image class="star" src="../images/u134.png"></image>
+          </view>
+          <view>题目质量
+            <image class="star" src="../images/u134.png"></image>
+            <image class="star" src="../images/u134.png"></image>
+            <image class="star" src="../images/u134.png"></image>
+            <image class="star" src="../images/u134.png"></image>
+            <image class="star" src="../images/u134.png"></image>
+          </view>
+        </view>
+      </view>
+      <view>
+        <view>评论</view>
+        <view>
+          <input type="text" placeholder="发表评论"></input>
+        </view>
+      </view>
+    </view>
+    <view class="tab">
+      <view class="tab_item" @tap="change(0)">
+        <image class="icon" src="../images/task.png"></image>
+        <text class="title">任务</text>
+      </view>
+      <view class="tab_item active">
+        <image class="icon" src="../images/achievement.png"></image>
+        <text class="title">成就</text>
+      </view>
+      <view class="tab_item" @tap="change(2)">
+        <image class="icon" src="../images/mall.png"></image>
+        <text class="title">商城</text>
+      </view>
+      <view class="tab_item" @tap="change(3)">
+        <image class="icon" src="../images/mine.png"></image>
+        <text class="title">我的</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<style lang="less">
+.completed-chanllenge {
+  .star, .share {
+    height: 30rpx;
+    width: 30rpx;
+  }
+  & > view {
+    padding: 52rpx;
+    margin-top: 24rpx;
+  }
+  & > view:first-child {
+    margin-top: 0 !important;
+  }
+  & > view {
+    padding: 30rpx;
+  }
+}
+</style>
+
+
+<script>
+import wepy from 'wepy'
+
+export default class CompletedChanllenge extends wepy.page {
+  methods = {
+    return() {
+      this.$redirect('task')
+    }
+  }
+}
+</script>

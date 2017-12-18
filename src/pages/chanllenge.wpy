@@ -1,0 +1,106 @@
+<template>
+  <view>
+    <view class='page-head image'>
+      <text class="return" style="top: 50%; left: 70rpx; transform: translateY(-50%); position: absolute; color: white;" @tap="return">返回</text>
+      <image src="../images/head.png"></image>
+    </view>
+    <view class='chanllenge page-body page-bg'>
+      <view>
+        <view style="display: inline-block;">
+          <view>今日挑战</view>
+          <view class="small">贡献者：陈年小香菜</view>
+        </view>
+        <view style="float: right; display: flex; height: 82rpx; align-items: center; justify-content: center;"><button class="small" style='height: 52rpx; width: 140rpx; vertical-align: middle;'>换一个</button></view>
+      </view>
+      <view>
+        <view>
+          <view>挑战内容</view>
+          <view class="small">贡献者：陈年小香菜</view>
+        </view>
+        <view>
+          <view>详细描述</view>
+          <view class="small">第一步：慢跑热身 4 分钟</view>
+          <view class="small">第二步：快跑 400米 + 慢跑200米为一个循环，共五个循环</view>
+          <view class="small">第三步：快跑 400米</view>
+        </view>
+      </view>
+      <view>
+        <view>评论</view>
+        <view>
+          <view class="avatar" style="display: inline-block; float: left;">
+            <image src="../images/u103.png" style="height: 94rpx; width: 123rpx;"></image>
+          </view>
+          <view class="comment" style="margin-left: 123rpx;">
+            <view class="meta">
+              <view style="display: inline-block;">
+                <view class="username small" style="margin-right: 50rpx;">哆啦C梦</view>
+                <view class="date tiny" style="margin-right: 50rpx;">2017-09-13</view>
+              </view>
+              <view class="prefer" style="float: right; display: inline-block">
+                <view class="tiny">12</view>
+                <image src="../images/u108.png"></image>
+              </view>
+            </view>
+            <view class="content small">整个过程有点吃力，好在都是坚持了下来。运动，一直在路上！！</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="tab">
+      <view class="tab_item" @tap="change(0)">
+        <image class="icon" src="../images/task.png"></image>
+        <text class="title">任务</text>
+      </view>
+      <view class="tab_item active">
+        <image class="icon" src="../images/achievement.png"></image>
+        <text class="title">成就</text>
+      </view>
+      <view class="tab_item" @tap="change(2)">
+        <image class="icon" src="../images/mall.png"></image>
+        <text class="title">商城</text>
+      </view>
+      <view class="tab_item" @tap="change(3)">
+        <image class="icon" src="../images/mine.png"></image>
+        <text class="title">我的</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<style lang="less">
+.chanllenge {
+  font-size: 32rpx;
+  .small {
+    font-size: 20rpx;
+  }
+  .tiny {
+    font-size: 18rpx;
+  }
+  .prefer > image {
+    width: 32rpx;
+    height: 32rpx;
+  }
+  & > view {
+    padding: 52rpx;
+    margin-top: 24rpx;
+  }
+  & > view:first-child {
+    margin-top: 0 !important;
+  }
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+
+export default class Chanllenge extends wepy.page {
+  config = {
+
+  };
+  methods = {
+    return() {
+      this.$redirect('task')
+    }
+  }
+}
+</script>

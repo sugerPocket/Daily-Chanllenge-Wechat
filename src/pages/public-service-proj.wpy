@@ -1,0 +1,95 @@
+<template>
+<view>
+  <view class='page-head image'>
+    <text class="return" style="top: 50%; left: 70rpx; transform: translateY(-50%); position: absolute; color: white;" @tap="return">返回</text>
+    <image src="../images/head.png"></image>
+  </view>
+  <view class='public-service-proj page-body page-bg'>
+    <view>
+      <view class="block half">
+        <view class="orange" style="font-size: 32rpx;">24587.98</view>
+        <view style="font-size: 24rpx; color: #bcbcbc;">用户捐积分（元）</view>
+      </view>
+      <view class="block half">
+        <view class="orange" style="font-size: 32rpx;">20374</view>
+        <view style="font-size: 24rpx; color: #bcbcbc;">爱心（份）</view>
+      </view>
+    </view>
+    <view class="mr-top" style="height: 180rpx;">
+      <view class="block" style="width: 500rpx; vertical-align: top; box-sizing: border-box; display: inline-block;">
+        <view>大山里的健康小课桌</view>
+        <view style="font-size: 20rpx; color: #949494">让大山里的孩子用上适合他们身体发育的、设计科学的学生专用课桌椅。</view>
+      </view>
+      <image src="../images/u797.jpeg" style="height: 100%; width: 240rpx; margin-left: 10rpx;"></image>
+    </view>
+    <view class="mr-top block">
+      <view>发起与善款接受机构</view>
+      <view style="font-size: 20rpx; color: #949494">小太阳基金会<text style="float: right"> > </text></view>
+    </view>
+    <view class="mr-top block">
+      <view>项目说明<text style="float: right"> > </text></view>
+    </view>
+    <view class="mr-top block">
+      <view>项目进展</view>
+      <view>
+        <view>
+        </view>
+        <view>
+          <view style="font-size: 28rpx;">走访当地学校搜集桌椅需求</view>
+          <view style="font-size: 20rpx; color: #949494;">2017-11-13 13：40：23</view>
+          <view style="font-size: 20rpx; color: #949494;">2017年10月，项目人员走放当地学校，收集了村小需求，已开始为16所村小采购3821套课桌椅。</view>
+          <image src="../images/u797.jpeg" style="height: 180rpx; width: 250rpx;"></image>
+        </view>
+      </view>
+    </view>
+    <button class="bg-orange" style="position: fixed; bottom: 0; left: 0; right: 0; color: white; border-radius: 0; border: none;">我要捐</button>
+  </view>
+</view>
+</template>
+
+<style lang="less">
+@orange: rgba(255, 153, 102, 1);
+.public-service-proj {
+  > view {
+    background-color: white;
+  }
+  .orange {
+    color: @orange;
+  }
+  .bg-orange {
+    background-color: @orange;
+  }
+  .mr-top {
+    margin-top: 30rpx;
+  }
+  .half {
+    display: inline-block;
+    width: 50%;
+    box-sizing: border-box;
+  }
+  .block {
+    padding: 18rpx;
+    box-sizing: border-box;
+  }
+  .tag {
+    background-color: rgba(255,153,102,0.1);
+    display: inline-block;
+    border-radius: 4rpx;
+    padding: 2rpx 10rpx;
+    margin-top: 10rpx;
+  }
+}
+</style>
+
+
+<script>
+import wepy from 'wepy'
+
+export default class PublicServiceProj extends wepy.page {
+  methods = {
+    return() {
+      this.$redirect('mall')
+    }
+  };
+}
+</script>

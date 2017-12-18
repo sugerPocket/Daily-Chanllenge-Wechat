@@ -1,0 +1,114 @@
+<template>
+  <view>
+    <view class='page-head image'>
+      <text class="return" style="top: 50%; left: 70rpx; transform: translateY(-50%); position: absolute; color: white;" @tap="return">返回</text>
+      <image src="../images/head.png"></image>
+    </view>
+    <view class='page-body page-bg chanllenge-list'>
+      <view>
+        <view style="display: inline-block;">
+          <view>挑战列表</view>
+        </view>
+      </view>
+      <view>
+        <view style="border-bottom: 2rpx solid #dfdfdf; padding-bottom: 10rpx;">2017年12月</view>
+        <view class="date small">12月14日 周四</view>
+        <view class="cell small">
+          <view class="item">
+            <view>增肌</view>
+            <view>深蹲初级练习</view>
+          </view>
+          <view class="item">
+            <view>烘焙</view>
+            <view>家庭烘烤曲奇饼干</view>
+          </view>
+        </view>
+        <view class="date small">12月13日 周三</view>
+        <view class="cell small">
+          <view class="item">
+            <view>增肌</view>
+            <view>推举初级练习</view>
+          </view>
+          <view class="item">
+            <view>声乐</view>
+            <view>吊嗓入门五法</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="tab">
+      <view class="tab_item" @tap="change(0)">
+        <image class="icon" src="../images/task.png"></image>
+        <text class="title">任务</text>
+      </view>
+      <view class="tab_item active">
+        <image class="icon" src="../images/achievement.png"></image>
+        <text class="title">成就</text>
+      </view>
+      <view class="tab_item" @tap="change(2)">
+        <image class="icon" src="../images/mall.png"></image>
+        <text class="title">商城</text>
+      </view>
+      <view class="tab_item" @tap="change(3)">
+        <image class="icon" src="../images/mine.png"></image>
+        <text class="title">我的</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<style lang="less">
+.chanllenge-list {
+  & > view:first-child {
+    margin-top: 0 !important;
+  }
+  & > view {
+    padding: 20rpx 52rpx;
+    margin-top: 24rpx;
+  }
+  .cell {
+    & > view:first-child {
+      border-top: 2rpx solid #dfdfdf;
+    }
+    & > view {
+      border-bottom: 2rpx solid #dfdfdf;
+    }
+
+    .item > view:first-child {
+      width: 80rpx;
+      display: inline-block;
+      border-right: 3rpx solid skyblue;
+      padding: 10rpx 0;
+    }
+    .item > view:not(:first-child) {
+      margin-left: 32rpx;
+      display: inline-block;
+      padding: 10rpx 0;
+    }
+  }
+  .date {
+    padding: 10rpx 0;
+  }
+}
+</style>
+
+<script>
+import wepy from 'wepy'
+
+export default class ChanllengeList extends wepy.page {
+  config = {
+    navigationBarTitleText: 'main'
+  };
+  data = {
+    pages: ['task', 'achievement', 'mall', 'mine']
+  };
+  methods = {
+    change(index) {
+      this.$redirect(this.pages[index])
+    },
+    return() {
+      this.$redirect('task')
+    }
+  };
+}
+</script>

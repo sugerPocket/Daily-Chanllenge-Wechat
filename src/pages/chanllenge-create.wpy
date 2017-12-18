@@ -1,0 +1,97 @@
+<template>
+  <view>
+    <view class='page-head image'>
+      <text class="return" style="top: 50%; left: 70rpx; transform: translateY(-50%); position: absolute; color: white;" @tap="return">返回</text>
+      <image src="../images/head.png"></image>
+    </view>
+    <view class='page-body page-bg chanllenge-create'>
+      <view>
+        <view style="display: inline-block;">
+          <view>贡献任务</view>
+          <view class="small">一周过去啦，有什么任务可以推荐给战友们一起挑战？</view>
+        </view>
+      </view>
+      <view>
+        <view class="weui-cells__title">挑战内容</view>
+        <input class="weui-input" placeholder="简要描述，不多于20字" />
+        <view class="weui-cells__title">详细描述</view>
+        <textarea class="weui-textarea" placeholder="描述清楚挑战内容，包括时间、次数、场地、动作要领和学习目的等方面" style="height: 3.3em" />
+        <view class="weui-cells__title">任务级别</view>
+        <view class="weui-cells weui-cells_after-title">
+          <radio-group bindchange="radioChange">
+            <label class="weui-cell weui-check__label" wx:for="{{radioItems}}" wx:key="value">
+              <radio class="weui-check" value="{{item.value}}" checked="{{item.checked}}"/>
+
+              <view class="weui-cell__bd">{{item.name}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item.checked}}">
+                <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+              </view>
+            </label>
+          </radio-group>
+        </view>
+      </view>
+    </view>
+    <view class="tab">
+      <view class="tab_item active">
+        <image class="icon" src="../images/task.png"></image>
+        <text class="title">任务</text>
+      </view>
+      <view class="tab_item" @tap="change(1)">
+        <image class="icon" src="../images/achievement.png"></image>
+        <text class="title">成就</text>
+      </view>
+      <view class="tab_item" @tap="change(2)">
+        <image class="icon" src="../images/mall.png"></image>
+        <text class="title">商城</text>
+      </view>
+      <view class="tab_item" @tap="change(3)">
+        <image class="icon" src="../images/mine.png"></image>
+        <text class="title">我的</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<style lang="less">
+.chanllenge-create {
+  & > view:first-child {
+    margin-top: 0 !important;
+  }
+  & > view {
+    padding: 20rpx 52rpx;
+    margin-top: 24rpx;
+  }
+  textarea, input {
+    font-size: 24rpx;
+  }
+}
+</style>
+
+
+<script>
+import wepy from 'wepy'
+
+export default class ChanllengeCreate extends wepy.page {
+  config = {
+    navigationBarTitleText: 'main'
+  };
+  data = {
+    radioItems: [
+      {name: '零基础入门', value: '0', checked: true},
+      {name: '初级', value: '1'},
+      {name: '中级', value: '2'},
+      {name: '高级', value: '3'},
+      {name: '精英级', value: '4'}
+    ],
+    pages: ['task', 'achievement', 'mall', 'mine']
+  };
+  methods = {
+    change(index) {
+      this.$redirect(this.pages[index])
+    },
+    return() {
+      this.$redirect('task')
+    }
+  };
+}
+</script>

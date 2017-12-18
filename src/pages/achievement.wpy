@@ -1,0 +1,152 @@
+<template>
+  <view class='page-head image'>
+    <image src="../images/head.png"></image>
+  </view>
+  <view class='achievement page-body'>
+    <view class="weui-tab page-bg">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" @tap="tabChange({{index}})">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <!--<view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>-->
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <view class="weui-panel">
+            <view class="weui-media-box weui-media-box_small-appmsg">
+              <text>成就雷达图</text>
+              <image src='../images/achievement_1.png'></image>
+            </view>
+          </view>
+          <view class="weui-panel">
+            <view class="weui-media-box weui-media-box_small-appmsg">
+              <text>成就雷达图</text>
+              <view>
+                <view class="weui-flex" style="height: 210rpx;">
+                  <image class="weui-flex__item" src="../images/achievement_2.png"></image>
+                  <image class="weui-flex__item" src="../images/achievement_3.png"></image>
+                  <image class="weui-flex__item" src="../images/achievement_4.png"></image>
+                </view>
+                <view class="weui-flex" style="height: 210rpx;">
+                  <image class="weui-flex__item" src="../images/achievement_5.png"></image>
+                  <image class="weui-flex__item"></image>
+                  <image class="weui-flex__item"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+          <view class="weui-cells weui-cells_after-title" style='padding-top: 20rpx;'>
+            <view url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__st weui-cell__st_in-access"></view>
+              <view class="weui-cell__bd" style='text-align: center'>2017-12-04 至 2017-12-11</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </view>
+          </view>
+          <view class="weui-panel">
+            <view class="weui-media-box weui-media-box_small-appmsg">
+              <view class="weui-cells weui-cells_in-small-appmsg" style='text-align: center'>
+                <view><text>本周一共挑战任务<text class='large-text yellow'>13</text>个</text></view>
+                <view><text>超过平均<text class='large-text blue'>64%</text>的人</text></view>
+                <view><text>挑战任务超过上周<text class='large-text yellow'>4</text>个</text></view>
+                <view>
+                  兴趣爱好包括
+                  <view></view>
+                  <view><text>其中你最热衷于<text class='large-text blue'>油画</text>哦</text></view>
+                </view>
+                <view><text class='large-text yellow'>下周加油</text></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="tab">
+    <view class="tab_item" @tap="change(0)">
+      <image class="icon" src="../images/task.png"></image>
+      <text class="title">任务</text>
+    </view>
+    <view class="tab_item active">
+      <image class="icon" src="../images/achievement.png"></image>
+      <text class="title">成就</text>
+    </view>
+    <view class="tab_item" @tap="change(2)">
+      <image class="icon" src="../images/mall.png"></image>
+      <text class="title">商城</text>
+    </view>
+    <view class="tab_item" @tap="change(3)">
+      <image class="icon" src="../images/mine.png"></image>
+      <text class="title">我的</text>
+    </view>
+  </view>
+</template>
+
+<style lang="less">
+@yellow: #FFCC33;
+@blue: #66ccff;
+.achievement {
+  .yellow {
+    color: @yellow;
+  }
+  .blue {
+    color: @blue;
+  }
+  .large-text {
+    vertical-align: middle;
+    font-size: 48rpx;
+    margin: 0 10rpx;
+  }
+  .weui-panel {
+    padding: 40rpx 60rpx;
+  }
+  .weui-panel:after {
+    border-bottom: none;
+  }
+  image.weui-flex__item {
+    height: 100%;
+  }
+  .weui-navbar {
+    border-bottom: none;
+  }
+  .weui-navbar__item {
+    border-bottom: 2rpx solid transparent;
+    &.weui-bar__item_on {
+      border-color: @yellow;
+      color: @yellow;
+    }
+  }
+  .weui-cells {
+    &:after, &:before {
+      border: none;
+    }
+  }
+}
+</style>
+
+
+<script>
+import wepy from 'wepy'
+
+export default class Achievement extends wepy.page {
+  config = {
+    navigationBarTitleText: '成就'
+  };
+  data = {
+    tabs: ['我的成就', '周报'],
+    activeIndex: 0,
+    pages: ['task', 'achievement', 'mall', 'mine']
+  };
+  methods = {
+    change(index) {
+      this.$redirect(this.pages[index])
+    },
+    tabChange(index) {
+      this.activeIndex = index
+    }
+  };
+}
+</script>

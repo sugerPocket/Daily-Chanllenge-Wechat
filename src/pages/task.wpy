@@ -1,0 +1,129 @@
+<template>
+<view>
+  <view class='page-head image'>
+    <image src="../images/head.png"></image>
+  </view>
+  <view class='task page-body'>
+    <view class='main' style='padding: 48rpx; text-align: center;'>
+      <view class='today shadow'>
+        <view>
+          <text>2017-09-12</text>
+        </view>
+        <view>
+          <text>今日挑战</text>
+        </view>
+        <view>
+          <text>HIT变速跑40分钟</text>
+        </view>
+        <view>
+          <button class="weui-btn mini-btn" size="mini" @tap="detail">挑战内容</button>
+          <button class="weui-btn mini-btn" size="mini" @tap="checkCompleted">我已完成</button>
+        </view>
+      </view>
+      <view class='weui-flex links'>
+        <view class='weui-flex__item shadow'>
+          <image src='../images/secret_chanllenge.png'></image>
+          <view>秘密挑战</view>
+        </view>
+        <view class='weui-flex__item shadow' @tap="create">
+          <image src='../images/devote_task.png'></image>
+          <view>贡献任务</view>
+        </view>
+      </view>
+      <view class='weui-flex links'>
+        <view class='weui-flex__item shadow' @tap="list">
+          <image src='../images/chanllenge_list.png'></image>
+          <view>挑战列表</view>
+        </view>
+        <view class='weui-flex__item shadow' @tap="setting">
+          <image src='../images/chanllenge_arrange.png'></image>
+          <view>挑战安排</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="tab">
+    <view class="tab_item active">
+      <image class="icon" src="../images/task.png"></image>
+      <text class="title">任务</text>
+    </view>
+    <view class="tab_item" @tap="change(1)">
+      <image class="icon" src="../images/achievement.png"></image>
+      <text class="title">成就</text>
+    </view>
+    <view class="tab_item" @tap="change(2)">
+      <image class="icon" src="../images/mall.png"></image>
+      <text class="title">商城</text>
+    </view>
+    <view class="tab_item" @tap="change(3)">
+      <image class="icon" src="../images/mine.png"></image>
+      <text class="title">我的</text>
+    </view>
+  </view>
+</view>
+</template>
+
+<style lang="less">
+.task {
+  .main {
+    .shadow {
+      border-radius: 40rpx;
+      box-shadow: 3px 3px 20px rgba(153, 153, 153, 0.349019607843137);
+    }
+    .links {
+      margin-top: 40rpx;
+      view {
+        padding: 25rpx;
+      }
+      view:first-child {
+        margin-right: 20rpx;
+      }
+      view:last-child {
+        margin-left: 20rpx;
+      }
+      image {
+        height: 133rpx;
+        width: 133rpx;
+      }
+    }
+  }
+  .today {
+    background: linear-gradient(180deg, rgba(255, 204, 153, 1) 0%, rgba(255, 204, 153, 1) 0%, rgba(204, 204, 153, 1) 100%, rgba(204, 204, 153, 1) 100%);
+  }
+}
+</style>
+
+
+<script>
+import wepy from 'wepy'
+
+export default class Task extends wepy.page {
+  config = {
+    navigationBarTitleText: '任务'
+  };
+  data = {
+    pages: ['task', 'achievement', 'mall', 'mine']
+  };
+  methods = {
+    change(index) {
+      this.$redirect(this.pages[index])
+      console.log(this)
+    },
+    detail() {
+      this.$redirect('chanllenge')
+    },
+    create() {
+      this.$redirect('./chanllenge-create')
+    },
+    list() {
+      this.$redirect('./chanllenge-list')
+    },
+    setting() {
+      this.$redirect('./chanllenge-setting')
+    },
+    checkCompleted() {
+      this.$redirect('./completed-chanllenge')
+    }
+  };
+}
+</script>

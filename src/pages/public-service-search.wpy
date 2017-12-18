@@ -1,0 +1,94 @@
+<template>
+<view>
+  <view class='page-head image'>
+    <text class="return" style="top: 50%; left: 70rpx; transform: translateY(-50%); position: absolute; color: white;" @tap="return">返回</text>
+    <image src="../images/head.png"></image>
+  </view>
+  <view class='public-service-search page-body'>
+    <view style="padding: 26rpx;">
+      <view class='input' style="border: none; width: 580rpx; background-color: #f8f8f8; border-radius: 4rpx; font-size: 24rpx; position: relative; padding-left: 40rpx; display: inline-block;">
+        <image src="../images/u781.png" style='height: 25rpx; width: 25rpx; position: absolute; left: 8rpx; top: 50%; transform: translateY(-50%)'></image>
+        <input type='text' placeholder="查询公益项目">
+      </view>
+      <view style='font-size: 26rpx; display: inline-block; height: 56rpx;  vertical-align: top;'>
+        <view style="line-height: 56rpx; display: inline-block; margin-left: 20rpx; height: 100%">搜索</view>
+      </view>
+    </view>
+    <view class='weui-panel__bd'>
+      <view class="weui-media-box weui-media-box_appmsg">
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title" style="font-size: 28rpx;">为孤寡老人送温暖</view>
+          <view class="weui-media-box__desc" style="margin-top: 10rpx; font-size: 20rpx;"> 新春到来之际为孤寡老人送去米面油等生活用品
+            <view class="weui-progress">
+              <view class="weui-progress__bar">
+                <progress percent="20" activeColor="orange" backgroundColor="rgba(255,153,102,0.2)" style="margin-top: 14rpx" stroke-width="5" />
+              </view>
+            </view>
+            <view class="love" style="margin-top: 10rpx; font-size: 20rpx;">
+              <text class="orange" style="color: orange;">20374</text>
+              份爱心
+              <text class="orange" style="float: right">20%</text>
+            </view>
+            <view class="tag orange">贫困儿童</view>
+          </view>
+        </view>
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" style="width: 240rpx; height: 180rpx; margin-left: 20rpx; margin-right: 0;"><image src="../images/u797.jpeg" style="width: 240rpx; height: 180rpx;" class="weui-media-box__thumb"></image></view>
+      </view>
+    </view>
+  </view>
+  <view class="tab">
+    <view class="tab_item" @tap="change(0)">
+      <image class="icon" src="../images/task.png"></image>
+      <text class="title">任务</text>
+    </view>
+    <view class="tab_item" @tap="change(1)">
+      <image class="icon" src="../images/achievement.png"></image>
+      <text class="title">成就</text>
+    </view>
+    <view class="tab_item active">
+      <image class="icon" src="../images/mall.png"></image>
+      <text class="title">商城</text>
+    </view>
+    <view class="tab_item" @tap="change(3)">
+      <image class="icon" src="../images/mine.png"></image>
+      <text class="title">我的</text>
+    </view>
+  </view>
+</view>
+</template>
+
+<style lang="less">
+@orange: orange;
+.public-service-search {
+  .orange {
+    color: @orange;
+  }
+  .tag {
+    background-color: rgba(255,153,102,0.1);
+    display: inline-block;
+    border-radius: 4rpx;
+    padding: 2rpx 10rpx;
+    margin-top: 10rpx;
+  }
+}
+</style>
+
+
+<script>
+import wepy from 'wepy'
+
+export default class PublicServiceSearch extends wepy.page {
+  data = {
+    activeIndex: 0,
+    pages: ['task', 'achievement', 'mall', 'mine']
+  };
+  methods = {
+    change(index) {
+      this.$redirect(this.pages[index])
+    },
+    return() {
+      this.$redirect('mall')
+    }
+  };
+}
+</script>
